@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1"></div>
+    <table border="1">
+        <thead></thead>
+    </table>
+    <script>
+        let html1 = '';
+        let html2 = '';
+        for(let i = 1; i <= 3; i++){
+            html1 += i + '<tr>';
+            for(let j = 1; j <= 3; j++){
+                html2 += j + 3;
+                for(let k = 1; k <= 3; k++){
+
+                }
+
+            }
+            // html1 += i + '<br>';
+            // if(i % 3 == 1){
+            //     html2 += '<tr>';
+            // }
+            // html2 += '<td>' + i + "</td>";
+            // if(i % 3 == 0){
+            //     html1 += '</tr>';
+            // }
+        }
+        document.querySelector('#div1').innerHTML = html1;
+        document.querySelector('thead').innerHTML = html2;
+    </script>
+</body>
+</html>

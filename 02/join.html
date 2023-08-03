@@ -19,7 +19,7 @@
             <table border="1">
                 <tr>
                     <td><label for="m">남자</label></td>
-                    <td><input type="radio" id="m" name="trans"></td>
+                    <td><input type="radio" id="m" name="trans" required></td>
                     <td><label for="w">여자</label></td>
                     <td><input type="radio" id="w" name="trans"></td>
                 </tr>
@@ -34,7 +34,6 @@
             const name = document.querySelector('#name');
             const pwd = document.querySelector('#pwd');
             const id = document.querySelector('#id');
-            const trans = document.querySelector('input[name = trans]: checked');
             const pNumber = document.querySelector('#pNumber');
 
             if(name.value.trim().length < 2){
@@ -53,10 +52,6 @@
                 alert('비밀번호는 4글자 이상 입력해주세요');
                 pwd.value = '';
                 pwd.focus();
-                return false;
-            }
-            if(trans === null){
-                alert('성별을 선택해주세요');
                 return false;
             }
             if(pNumber.value.trim().length < 11){

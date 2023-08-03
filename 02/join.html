@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onsubmit="return check()">
+        <label for="name">이름&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+        <input type="text" id="name" placeholder="이름"><br>
+        <label for="id">아이디&nbsp&nbsp&nbsp&nbsp</label>
+        <input type="text" id="id" placeholder="ID"><br>
+        <label for="pwd">비밀번호&nbsp</label>
+        <input type="text" id="pwd" placeholder="비밀번호"><br>
+        <div>
+            <table border="1">
+                <tr>
+                    <td><label for="m">남자</label></td>
+                    <td><input type="radio" id="m" name="trans"></td>
+                    <td><label for="w">여자</label></td>
+                    <td><input type="radio" id="w" name="trans"></td>
+                </tr>
+            </table>
+        </div>
+        <label for="pNumber">전화번호&nbsp</label>
+        <input type="tel" id="pNumber" placeholder="- 빼고 입력해주세요" maxlength="11"><br>
+        <button>가입</button>
+    </form>
+    <script>
+        function check(){
+            const name = document.querySelector('#name');
+            const pwd = document.querySelector('#pwd');
+            const id = document.querySelector('#id');
+            const trans = document.querySelector('input[name = trans]: checked');
+            const pNumber = document.querySelector('#pNumber');
+
+            if(name.value.trim().length < 2){
+                alert('이름은 2글자 이상 입력해주세요');
+                name.value = '';
+                name.focus();
+                return false;
+            }
+            if(id.value.trim().length < 4){
+                alert('ID는 4글자 이상 입력해주세요');
+                id.value = '';
+                id.focus();
+                return false;
+            }
+            if(pwd.value.trim().length < 4){
+                alert('비밀번호는 4글자 이상 입력해주세요');
+                pwd.value = '';
+                pwd.focus();
+                return false;
+            }
+            if(trans === null){
+                alert('성별을 선택해주세요');
+                return false;
+            }
+            if(pNumber.value.trim().length < 11){
+                alert('전화번호는 11글자 입니다');
+                pNumber.value = '';
+                pNumber.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

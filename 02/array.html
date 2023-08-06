@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let arr = new Array();
+        
+        let arr1 = [];
+
+        for(let i = 1; i <= 3; i++){
+            const rNum = Math.floor(Math.random() * 3   ) + 1;
+            if(arr1.includes(rNum)){
+                i--;
+                continue;
+            }
+            arr1[arr1.length] = rNum;
+        }
+        console.log(arr1);
+    </script>
+</body>
+</html>

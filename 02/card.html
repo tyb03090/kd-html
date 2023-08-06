@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            padding: 1;
+            margin: 1;
+            width: 80px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="startCard()">시작</button>
+    <div id="table">
+
+    </div>
+    <script>
+        const arr = [];
+        let cnt = 0;
+        let timer;
+        function reverse(obj) {
+            let openImgs = document.querySelectorAll('img[data-open="1"]');
+            if (openImgs.length === 2) {
+                return;
+            }
+
+            const num = obj.getAttribute('data-num');
+            const imgPath = `/img/cards/${num}.png`;
+            obj.src = imgPath;
+            obj.setAttribute('data-open', '1');
+            if (openImgs.length == 1) {
+                cnt++;
+                const num2 = openImgs[0].getAttribute('data-num');
+                if (num % 13 === num2 % 13) {
+                    console.log(timer);
+                    clearTimeout(timer);
+                    openImgs[0].setAttribute('data-open', '2');
+                    obj.setAttribute('data-open', '2');
+                    if (document.querySelectorAll('img[data-open="2"]').length == 26) {
+                        alert(`${cnt}회, ${time}초 만에 완료 하였습니다.`);
+                        console.log(`${cnt}회, ${time}초 만에 완료 하였습니다.`);
+                    }
+                    return;
+                }
+                timer = setTimeout(function () {
+                    openImgs = document.querySelectorAll('img[data-open="1"]');
+                    for (let i = 0; i < openImgs.length; i++) {
+                        openImgs[i].src = `/img/cards/back.png`;
+                        openImgs[i].setAttribute('data-open', '0');
+                    }
+                }, 1000);
+            }
+        }
+        let time = 0;
+        function startCard() {
+            setInterval(function () {
+                time += 1;
+            }, 1000);
+            arr.length = 0;
+            while (arr.length < 52) {
+                const rNum = Math.floor(Math.random() * 52);
+                if (!arr.includes(rNum)) {
+                    arr.push(rNum);
+                }
+            }
+            let html = '<table>';
+            let cnt = 0;
+            for (let i = 0; i < 4; i++) {
+                html += '<tr>';
+                for (let j = 1; j < 14; j++) {
+                    html += `<td><img src="/img/cards/back.png" data-num="${arr[cnt++]}" `;
+                    html += ` onclick="reverse(this)" data-open="0"></td>`
+                }
+                html += '</td>'
+            }
+            html += '</table>'
+            document.querySelector('#table').innerHTML = html;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let money = 0;  //50000 ~ 1000000
+        let a = "";
+        let betMoney = 0;
+        window.onload = function(){
+            const sDiv = document.querySelector('#sDiv');
+            const gDiv = document.querySelector('#gDiv');
+            gDiv.style.display = 'none';
+            document.querySelector('#sBtn').onclick = function(){
+                sDiv.style.display = 'none';
+                gDiv.style.display = 'block';
+
+                money = (Math.floor(Math.random() * 20) + 1) * 50000;
+                document.querySelector('#money').innerHTML = money;
+                
+                a = (Math.floor(Math.random() * 2) + 1);
+                if(a === 1){
+                    document.querySelector('#a').innerHTML = "홀";
+                }
+                if(a === 2){
+                    document.querySelector('#a').innerHTML = "짝";
+                }
+            }
+            document.querySelector('#oddBtn').onclick = function(){
+                betMoney = parseInt(document.querySelector('#betMoney').value);
+                if(a === 1){
+                    alert('정답!');
+                    document.querySelector('#money').innerHTML = money + betMoney;
+                }
+                if(a === 2){
+                    alert('오답...');
+                    document.querySelector('#money').innerHTML = money - betMoney;
+                }
+            }
+            document.querySelector('#evenBtn').onclick = function(){
+                let betMoney = document.querySelector('#betMoney');
+                if(a === 1){
+                    alert('오답...');
+                    document.querySelector('#money').innerHTML = money - betMoney;
+                }
+                if(a === 2){
+                    alert('정답!');
+                    document.querySelector('#money').innerHTML = money + betMoney;
+                }
+
+            }
+        }
+    </script>
+    <div id="sDiv">
+        <button id="sBtn">시작</button>
+    </div>
+    <div id="gDiv">
+        금액 : <span id="money"></span>원<br>
+        정답 : <sapn id="a"></sapn><br>
+        <input type="text" id="betMoney"><br>
+        <button id="oddBtn">홀</button>
+        <button id="evenBtn">짝</button>
+    </div>
+</body>
+</html>

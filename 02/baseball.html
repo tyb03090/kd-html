@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getRandom(start, end) {
+            return Math.floor(Math.random() * (end + 1)) + start;
+        }
+        const arr = [];
+        window.onload = function () {
+            const gDiv = document.querySelector('#gDiv');
+            gDiv.style.display = 'none';
+            const sDiv = document.querySelector('#sDiv');
+            document.querySelector('#sBtn').onclick = function () {
+                while (arr.length < 3) {
+                    const rNum = getRandom(0, 9);
+                    if (!arr.includes(rNum)) {
+                        arr.push(rNum);
+                    }
+                }
+                console.log(arr);
+                sDiv.style.display = 'none';
+                gDiv.style.display = 'block';
+            }
+            document.querySelector('#gBtn').onclick = function () {
+                const arr2 = [];
+                let strike = 0;
+                let ball = 0;
+                const num1 = document.querySelector('#num1');
+                arr2.push(parseInt(num1.value));
+                const num2 = document.querySelector('#num2');
+                arr2.push(parseInt(num2.value));
+                const num3 = document.querySelector('#num3');
+                arr2.push(parseInt(num3.value));
+                for (let i = 0; i < arr2.length; i++) {
+                    const idx = arr.indexOf(arr2[i]);
+                    if (idx === i) {
+                        strike++;
+                    } else if (idx != -1) {
+                        ball++;
+                    }
+                }
+                alert(`${strike}s, ${ball}b`);
+            }
+        }
+    </script>
+    <div id="sDiv">
+        <button id="sBtn">시작</button>
+    </div>
+    <div id="gDiv">
+        <input type="number" min="0" max="9" id="num1">
+        <input type="number" min="0" max="9" id="num2">
+        <input type="number" min="0" max="9" id="num3">
+        <button id="gBtn">도전</button>
+    </div>
+</body>
+
+</html>
